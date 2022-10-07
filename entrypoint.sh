@@ -16,36 +16,8 @@ echo "Environments"
 echo "- curl : $(which curl)"
 
 echo "Starting CouchDB..."
-docker run --name my-couchdb-app -p 5984:5984 -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password -d couchdb:$COUCHDB_VERSION
+docker run --name my-couchdb-app -p 5984:5984 -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password -e COUCHDB_SECRET=123456 -d couchdb:$COUCHDB_VERSION
 docker ps
 
 # FIXME can't connect. reason is unknown.
-sleep 15
-
-#function waiting() {
-#  echo "Waiting for CouchDB run..."
-#
-#  TIMEOUT=20
-#  TIMER=$TIMEOUT
-#
-#  while ! curl -f http://127.0.0.1:5984 &> /dev/null
-#  do
-#    sleep 1
-#    # echo $(curl -o /dev/null -w "%{http_code}" "http://localhost:19764")
-#    echo $(curl -f http://localhost:5984)
-#    echo $(curl -f http://0.0.0.0:5984)
-#    echo $(curl -f http://127.0.0.1:5984)
-#    echo $(curl -f https://127.0.0.1:5984)
-#    echo $(docker ps)
-#    # echo -ne "."
-#
-#    TIMER=$((TIMER - 1))
-#
-#    if [[ $TIMER -eq 0 ]]; then
-#      echo "CouchDB did not run within $TIMEOUT seconds."
-#      exit 2
-#    fi
-#  done
-#}
-#
-#waiting
+sleep 10
