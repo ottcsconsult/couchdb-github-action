@@ -2,22 +2,30 @@
 
 COUCHDB_VERSION=$1
 
-if [[ -z "$COUCHDB_VERSION" ]]; then
-  echo "Missing CouchDB version in the [couchdb-version] input. Received value: $COUCHDB_VERSION"
-  exit 2
-fi
+cat > Dockerfile << EOF
+FROM couchdb:latest
 
-if [[ $COUCHDB_VERSION != "latest" && $COUCHDB_VERSION != "3.1.0" && $COUCHDB_VERSION != "3.1" && $COUCHDB_VERSION != "3" && $COUCHDB_VERSION != "3.0.1" && $COUCHDB_VERSION != "3.0" && $COUCHDB_VERSION != "2.3.1" && $COUCHDB_VERSION != "2.3" && $COUCHDB_VERSION != "2" ]]; then
-  echo "$$COUCHDB_VERSION should be one of latest, 3.1.0, 3.1, 3, 3.0.1, 3.0, 2.3.1, 2.3 and 2"
-  exit 2
-fi
+COPY local.ini /opt/couchdb/etc/local.ini
+EOF
 
-echo "Environments"
-echo "- curl : $(which curl)"
+cat > local.ini << EOF
+[chttpd]
+authentication_handlers = {chttpd_auth, cookie_authentication_handler}, {chttpd_auth, proxy_authentication_handler}, {chttpd_auth, default_authentication_handler}
+
+[chttpd_auth]
+secret = a7a6a238bae74b55384e07aa865a9014
+proxy_use_secret = true
+
+[dreyfus]
+name = clouseau@127.0.0.1
+
+[admins]
+admin=password
+EOF
 
 echo "Starting CouchDB..."
-docker run --name my-couchdb-app -p 5984:5984 -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password -e COUCHDB_SECRET=123456 -d couchdb:$COUCHDB_VERSION
+docker build -t appro-couchdb .
+docker run --name appro-couchdb -p 5984:5984 -d appro-couchdb
 docker ps
 
-# FIXME can't connect. reason is unknown.
 sleep 10
