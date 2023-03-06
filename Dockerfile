@@ -5,8 +5,8 @@ COPY entrypoint.sh /entrypoint.sh
 COPY custom_couch/local.ini /local.ini
 COPY custom_couch/vm.args /vm.args
 COPY custom_couch/Dockerfile /Dockerfile
-COPY custom_couch/etc /etc
-COPY custom_couch/src /src
+COPY custom_couch/etc /etc2
+COPY custom_couch/src /src2
 COPY custom_couch/run-clouseau.sh /
 COPY custom_couch/docker-entrypoint.sh /
 
