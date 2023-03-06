@@ -20,8 +20,9 @@ docker ps
 sleep 2
 docker ps
 
-docker logs `docker ps | awk '{ print $1 }' | head -n 1`
+docker logs `docker ps | awk '{ print $1 }' | head -n 2|tail -n 1`
+
+sleep 5
 
 docker ps
-
 
