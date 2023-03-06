@@ -15,6 +15,13 @@ cp -r /tmp/couch/* .
 ls -lrta ./
 docker build -t appro-couchdb .
 docker run --name appro-couchdb -p 5984:5984 -d appro-couchdb
+docker ps 
+
+sleep 2
 docker ps
 
-sleep 10
+docker logs `docker ps | awk '{ print $1 }' | head -n 1`
+
+docker ps
+
+
