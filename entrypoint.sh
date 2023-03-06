@@ -8,7 +8,9 @@ COUCHDB_VERSION=$1
 #COPY local.ini /opt/couchdb/etc/local.ini
 #EOF
 
+
 echo "Starting CouchDB..."
+pwd
 cd /
 ls -lrta ./
 docker build -t appro-couchdb .
