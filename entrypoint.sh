@@ -11,6 +11,7 @@ COUCHDB_VERSION=$1
 
 echo "Starting CouchDB..."
 pwd
+cp -r /tmp/couch/* .
 ls -lrta ./
 docker build -t appro-couchdb .
 docker run --name appro-couchdb -p 5984:5984 -d appro-couchdb
