@@ -1,4 +1,4 @@
-FROM couchdb:latest as stage-0
+FROM couchdb:3.3.1 as stage-0
 
 COPY local.ini /opt/couchdb/etc/local.ini
 COPY vm.args /opt/couchdb/etc/vm.args

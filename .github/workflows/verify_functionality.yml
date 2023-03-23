@@ -12,8 +12,6 @@ jobs:
 
       - name: Fire up CouchDB
         uses: ottcsconsult/couchdb-github-action@master
-        with:
-          couchdb-version: latest
 
       - name: Test CouchDB
         run: |
