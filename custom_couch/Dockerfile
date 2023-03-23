@@ -20,8 +20,8 @@ ADD https://github.com/cloudant-labs/clouseau/releases/download/2.21.5/clouseau-
 RUN unzip -j /opt/clouseau/lib/clouseau-2.21.5.zip -d /opt/clouseau/lib && rm /opt/clouseau/lib/clouseau-2.21.5.zip
 RUN mkdir /var/lib/clouseau
 
-COPY ./etc /opt/clouseau/etc
-COPY ./src/slf4j-simple-1.7.32.jar /opt/clouseau/lib
+COPY ./etc2 /opt/clouseau/etc
+COPY ./src2/slf4j-simple-1.7.32.jar /opt/clouseau/lib
 ENV CLASSPATH=/opt/clouseau/lib/*
 
 FROM clouseau as entrypoint
