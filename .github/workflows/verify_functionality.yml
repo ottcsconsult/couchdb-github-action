@@ -2,39 +2,11 @@ name: verify-functionality
 on:
   workflow_dispatch:
   
-env:
-  GAIA_DB_SERVER: "http://localhost:5984/"
-  GAIA_DB_ADMIN_USER: admin
-  GAIA_DB_ADMIN_PASS: password
-  GAIA_API_PORT: 1337
-  GAIA_API_HOST: localhost
-  GAIA_APP_ENVIRONMENT: devel
-  GAIA_DB_NAME: main
-  GAIA_DB_CONFIGURATION: configuration
-  GAIA_DB_NOTIFICATION: notification
-  GAIA_DB_TEMP: temp
-  GAIA_DB_MGMIRROR: mgmirror
-  GAIA_DB_MAINSTATE: daemonstate_main
-  GAIA_TENANT: gaia
-  GAIA_ATTACHMENTS_LOCAL_PATH: /tmp
-  GAIA_JSONSCHEMA_PATH: jsonschema/
-  GAIA_API_PROTOCOL: http
-  GAIA_SOCKET_PORT: 1339
-  GAIA_SOCKET_HOST: 127.0.0.1
-  GAIA_SOCKET_USER: socketio@gaia.dev
-  GAIA_SOCKET_PASS: gaia
-  GAIA_JWT_PRIVATEKEY: jwt_keys/priv.pem
-  GAIA_JWT_PUBLICKEY: jwt_keys/pub.pem
-
-defaults:
-  run:
-    working-directory: ./server
-
 jobs:
   couchdb3-clouseau:
     runs-on: ubuntu-latest
     steps:
-          
+
       - name: Git checkout
         uses: actions/checkout@v3
 

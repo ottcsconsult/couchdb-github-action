@@ -4,6 +4,7 @@ COPY local.ini /opt/couchdb/etc/local.ini
 COPY vm.args /opt/couchdb/etc/vm.args
 
 FROM stage-0 as java
+ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 RUN apt-get install -y wget apt-transport-https unzip apt-utils
 
