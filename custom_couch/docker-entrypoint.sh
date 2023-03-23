@@ -119,7 +119,7 @@ EOWARN
 	fi
 
 	if [ "$(id -u)" = '0' ]; then
-		exec gosu couchdb "$@"
+		exec setpriv --reuid=couchdb --regid=couchdb --clear-groups "$@"
 	fi
 fi
 
